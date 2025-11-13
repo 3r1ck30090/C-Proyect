@@ -106,7 +106,7 @@ public:
     }
 
     void mostrarCarrito() {
-        std::cout << "\n---- Carrito de Compras ----" << std::endl;
+        std::cout << " Carrito de Compras" << std::endl;
         producto1.mostrarInfo();
         producto2.mostrarInfo();
         std::cout << "Total a pagar: $" << total << std::endl;
@@ -128,3 +128,4 @@ int main() {
 
     return 0;
 }
+
