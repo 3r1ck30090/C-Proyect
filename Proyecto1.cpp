@@ -14,7 +14,8 @@ void Producto::setCantidad(int c) { cantidad = c; }
 void Producto::mostrarInfo() {
     std::cout << "Producto: " << nombre
               << ", Precio: $" << precio
-              << ", Cantidad: " << cantidad << std::endl;
+              << ", Cantidad: " << cantidad
+              << std::endl;
 }
 
 Comprador::Comprador(std::string n, float s)
@@ -26,50 +27,60 @@ float Comprador::getSaldo() { return saldo; }
 void Comprador::setNombre(std::string n) { nombre = n; }
 void Comprador::setSaldo(float s) { saldo = s; }
 
-void Comprador::mostrarInfo() {
-    std::cout << "Comprador: " << nombre
-              << ", Saldo disponible: $" << saldo << std::endl;
-}
-
 bool Comprador::puedePagar(float total) {
     return saldo >= total;
 }
 
 void Comprador::pagar(float total) {
-    if (puedePagar(total)) {
-        saldo -= total;
-        std::cout << nombre << " ha pagado $" << total
-                  << ". Nuevo saldo: $" << saldo << std::endl;
-    } else {
-        std::cout << "Saldo insuficiente para realizar la compra." << std::endl;
-    }
+    saldo -= total;
+}
+
+void Comprador::mostrarInfo() {
+    std::cout << "Comprador: " << nombre
+              << ", Saldo disponible: $" << saldo
+              << std::endl;
 }
 
 Carrito::Carrito(Producto p1, Producto p2)
     : producto1(p1), producto2(p2) {
-    total = p1.getPrecio() + p2.getPrecio();
+    total = (p1.getPrecio() * p1.getCantidad()) +
+            (p2.getPrecio() * p2.getCantidad());
 }
 
 float Carrito::getTotal() { return total; }
 
 void Carrito::mostrarCarrito() {
-    std::cout << "\n--- Carrito de Compras ---\n";
+    std::cout << "\n Carrito de Compras\n";
     producto1.mostrarInfo();
     producto2.mostrarInfo();
     std::cout << "Total a pagar: $" << total << std::endl;
 }
 
+void Tienda::procesarCompra(Carrito carrito, Comprador& comprador) {
+
+    float total = carrito.getTotal();
+
+    if (comprador.puedePagar(total)) {
+        std::cout << "\nCompra exitosa.\n";
+        comprador.pagar(total);
+        std::cout << "Nuevo saldo: $" << comprador.getSaldo() << std::endl;
+    } else {
+        std::cout << "\nEl comprador no tiene saldo suficiente.\n";
+    }
+}
 int main() {
-    Producto producto1("Laptop", 9999.99, 3);
-    Producto producto2("Mouse", 249.50, 10);
+    Producto p1("Laptop", 10000, 2);
+    Producto p2("Mouse", 250, 5);
 
-    Comprador comprador1("Carlos", 12000.0);
-    Carrito carrito(producto1, producto2);
+    Comprador cliente("Carlos", 15000);
 
-    comprador1.mostrarInfo();
+    Carrito carrito(p1, p2);
+
+    cliente.mostrarInfo();
     carrito.mostrarCarrito();
 
-    comprador1.pagar(carrito.getTotal());
+    Tienda tienda;
+    tienda.procesarCompra(carrito, cliente);
 
     return 0;
 }
