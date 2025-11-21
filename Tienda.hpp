@@ -56,10 +56,10 @@ public:
     float getTotal();
     void mostrarCarrito();
 };
-
 class Tienda {
 public:
     void procesarCompra(Carrito carrito, Comprador& comprador);
 };
 
 #endif
+
