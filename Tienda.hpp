@@ -57,4 +57,9 @@ public:
     void mostrarCarrito();
 };
 
+class Tienda {
+public:
+    void procesarCompra(Carrito carrito, Comprador& comprador);
+};
+
 #endif
