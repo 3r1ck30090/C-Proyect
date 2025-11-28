@@ -3,6 +3,19 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+
+class Usuario {
+protected:
+    std::string nombre;
+
+public:
+    Usuario();
+    Usuario(std::string n);
+
+    std::string getNombre();
+    void setNombre(std::string n);
+};
 
 class Producto {
 private:
@@ -11,6 +24,7 @@ private:
     int cantidad;
 
 public:
+    Producto();
     Producto(std::string n, float p, int c);
 
     std::string getNombre();
@@ -24,18 +38,15 @@ public:
     void mostrarInfo();
 };
 
-class Comprador {
+class Comprador : public Usuario {
 private:
-    std::string nombre;
     float saldo;
 
 public:
+    Comprador();
     Comprador(std::string n, float s);
 
-    std::string getNombre();
     float getSaldo();
-
-    void setNombre(std::string n);
     void setSaldo(float s);
 
     bool puedePagar(float total);
@@ -44,71 +55,46 @@ public:
     void mostrarInfo();
 };
 
-class Carrito {
-private:
-    Producto producto1;
-    Producto producto2;
-    float total;
-
-public:
-    Carrito(Producto p1, Producto p2);
-
-    float getTotal();
-    void mostrarCarrito();
-};
 class Inventario {
 private:
     Producto lista[50];
     int numProductos = 0;
 
 public:
-    Inventario() {}
+    Inventario();
 
-    void agregarProducto(Producto p) {
-        if (numProductos < 50) {
-            lista[numProductos++] = p;
-        }
-    }
-
-    void mostrarInventario() {
-        std::cout << "\nInventario:\n";
-        for (int i = 0; i < numProductos; i++) {
-            lista[i].mostrarInfo();
-        }
-    }
+    void agregarProducto(Producto p);
+    bool descontarProducto(std::string nombre);
+    void mostrarInventario();
 };
-class Tienda {
-private:
-    Producto productos[50];
-    int numProductos = 0;
 
-    Comprador compradores[50];
-    int numCompradores = 0;
+class Carrito {
+private:
+    std::vector<Producto> productos;
+    float total;
 
 public:
-void procesarCompra(Carrito carrito, Comprador& comprador);
-void agregarProducto(Producto p) {
-    if (numProductos < 50) {
-         productos[numProductos++] = p;
-        }
-    }
-    void mostrarProductos() {
-        std::cout << "\nProductos en Tienda:\n";
-        for (int i = 0; i < numProductos; i++) {
-            productos[i].mostrarInfo();
-        }
-    }
+    Carrito();
 
-    void agregarComprador(Comprador c) {
-        if (numCompradores < 50) {
-            compradores[numCompradores++] = c;
-        }
-    }
-    void mostrarCompradores() {
-        std::cout << "\nCompradores registrados:\n";
-        for (int i = 0; i < numCompradores; i++) {
-            compradores[i].mostrarInfo();
-        }
-    }
+    void agregar(Producto p);
+    float getTotal();
+    std::vector<Producto> getProductos();
+
+    void mostrarCarrito();
 };
+
+class Tienda {
+private:
+    Inventario inventario;
+
+public:
+    Tienda();
+    Tienda(Inventario inv);
+
+    void agregarAlInventario(Producto p);
+    void mostrarInventario();
+
+    void procesarCompra(Carrito carrito, Comprador &comprador);
+};
+
 #endif
