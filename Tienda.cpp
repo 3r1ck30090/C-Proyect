@@ -70,7 +70,7 @@ bool Inventario::descontarProducto(std::string nombre) {
 }
 
 void Inventario::mostrarInventario() {
-    std::cout << "\n--- INVENTARIO ---\n";
+    std::cout << "\n- INVENTARIO -\n";
     for (int i = 0; i < numProductos; i++)
         lista[i].mostrarInfo();
 }
@@ -87,7 +87,7 @@ float Carrito::getTotal() { return total; }
 std::vector<Producto> Carrito::getProductos() { return productos; }
 
 void Carrito::mostrarCarrito() {
-    std::cout << "\n--- CARRITO ---\n";
+    std::cout << "\n- CARRITO -\n";
     for (auto &p : productos)
         p.mostrarInfo();
 
@@ -123,3 +123,4 @@ void Tienda::procesarCompra(Carrito carrito, Comprador &comprador) {
     std::cout << "\nCompra exitosa.\nNuevo saldo: $"
               << comprador.getSaldo() << "\n";
 }
+
