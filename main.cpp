@@ -10,7 +10,7 @@ int main() {
     inventario.agregarProducto(Producto("The Legend of Zelda: Breath of the Wild", 1299.0, 10));
     inventario.agregarProducto(Producto("Elden Ring", 1399.0, 7));
     inventario.agregarProducto(Producto("God of War Ragnarok", 1499.0, 5));
-    inventario.agregarProducto(Producto("Overwatch", 999.0, 20));
+    inventario.agregarProducto(Producto("Expedition 33", 999.0, 20));
 
     cout << "\n= CATALOGO INICIAL =\n";
     inventario.mostrarInventario();
@@ -19,8 +19,7 @@ int main() {
 
     Carrito carrito;
     carrito.agregar(Producto("Elden Ring", 1399.0f, 1));
-    carrito.agregar(Producto("FIFA 24", 999.0f, 2));
-
+    
     cout << "\n= CARRITO =\n";
     carrito.mostrarCarrito();
 
@@ -37,4 +36,5 @@ int main() {
 
     return 0;
 }
+
 
