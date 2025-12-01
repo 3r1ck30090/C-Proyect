@@ -1,40 +1,81 @@
 #include <iostream>
+#include <limits>
 #include "Tienda.hpp"
 
 using namespace std;
 
 int main() {
+    Tienda tienda;
 
-    Inventario inventario;
+    tienda.getInventario().agregar(Producto("The Legend of Zelda: The Wind Waker", 1200, 5));
+    tienda.getInventario().agregar(Producto("Mario Kart World", 1799, 3));
+    tienda.getInventario().agregar(Producto("Elden Ring", 1400, 4));
+    tienda.getInventario().agregar(Producto("The Witcher III", 49, 7));
+    tienda.getInventario().agregar(Producto("Constance", 300, 1));
 
-    inventario.agregarProducto(Producto("The Legend of Zelda: Breath of the Wild", 1299.0, 10));
-    inventario.agregarProducto(Producto("Elden Ring", 1399.0, 7));
-    inventario.agregarProducto(Producto("God of War Ragnarok", 1499.0, 5));
-    inventario.agregarProducto(Producto("Expedition 33", 999.0, 20));
+    string nombre;
+    float dinero;
 
-    cout << "\n= CATALOGO INICIAL =\n";
-    inventario.mostrarInventario();
+    cout << "Ingresa tu nombre: ";
+    getline(cin, nombre);
 
-    Comprador comprador("Miguel", 5000);
+    cout << "Ingresa tu dinero: $";
+    cin >> dinero;
 
+    Comprador comprador(nombre, dinero);
     Carrito carrito;
-    carrito.agregar(Producto("Elden Ring", 1399.0f, 1));
-    
-    cout << "\n= CARRITO =\n";
-    carrito.mostrarCarrito();
 
-    Tienda tienda(inventario);
+    int opcion;
+    do {
+        cout << "\nMENU";
+        cout << "\n 1) Ver inventario";
+        cout << "\n 2) Agregar producto al carrito";
+        cout << "\n 3) Ver carrito";
+        cout << "\n 4) Comprar";
+        cout << "\n 5) Salir";
+        cout << "\n Opcion: ";
+        cin >> opcion;
 
-    tienda.agregarAlInventario(Producto("Spider-Man 2", 1499.0f, 12));
+        if (opcion == 1) {
+            tienda.getInventario().mostrar();
+        }
 
-    cout << "\n= INVENTARIO ACTUALIZADO =\n";
-    tienda.mostrarInventario();
+        else if (opcion == 2) {
+            string nombreProd;
+            cout << "\n Nombre exacto del producto: ";
 
-    tienda.procesarCompra(carrito, comprador);
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            getline(cin, nombreProd);
 
-    cout << "\n= FIN =\n";
+            int index = tienda.getInventario().buscar(nombreProd);
+
+            if (index == -1) {
+                cout << " No existe ese producto \n";
+            }
+            else {
+                Producto& p = tienda.getInventario().getProducto(index);
+                if (p.getCantidad() == 0)
+                    cout << " Ya no hay existencias \n";
+                else {
+                    carrito.agregar(index);
+                    p.setCantidad(p.getCantidad() - 1);
+                    cout << " Agregado al carrito \n";
+                }
+            }
+        }
+
+        else if (opcion == 3) {
+            carrito.mostrar(tienda.getInventario());
+        }
+
+        else if (opcion == 4) {
+            carrito.mostrar(tienda.getInventario());
+            tienda.procesarCompra(carrito, comprador);
+        }
+
+    } while (opcion != 5);
+
+    cout << "\n Gracias por visitar la tienda\n";
 
     return 0;
 }
-
-
