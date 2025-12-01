@@ -4,6 +4,36 @@
 
 using namespace std;
 
+int leerEnteroSeguro() {
+    int valor;
+    while (true) {
+        cin >> valor;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Ingresa un numero valido: ";
+        } else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return valor;
+        }
+    }
+}
+
+float leerFloatSeguro() {
+    float valor;
+    while (true) {
+        cin >> valor;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Ingresa un numero valido: ";
+        } else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return valor;
+        }
+    }
+}
+
 int main() {
     Tienda tienda;
 
@@ -20,7 +50,7 @@ int main() {
     getline(cin, nombre);
 
     cout << "Ingresa tu dinero: $";
-    cin >> dinero;
+    dinero = leerFloatSeguro();
 
     Comprador comprador(nombre, dinero);
     Carrito carrito;
@@ -34,7 +64,8 @@ int main() {
         cout << "\n 4) Comprar";
         cout << "\n 5) Salir";
         cout << "\n Opcion: ";
-        cin >> opcion;
+
+        opcion = leerEnteroSeguro();
 
         if (opcion == 1) {
             tienda.getInventario().mostrar();
@@ -43,8 +74,6 @@ int main() {
         else if (opcion == 2) {
             string nombreProd;
             cout << "\n Nombre exacto del producto: ";
-
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             getline(cin, nombreProd);
 
             int index = tienda.getInventario().buscar(nombreProd);
@@ -79,3 +108,4 @@ int main() {
 
     return 0;
 }
+
