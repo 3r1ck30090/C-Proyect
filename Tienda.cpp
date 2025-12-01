@@ -1,126 +1,106 @@
 #include "Tienda.hpp"
-#include <iostream>
+using namespace std;
 
 Usuario::Usuario() : nombre("Sin nombre") {}
-Usuario::Usuario(std::string n) : nombre(n) {}
-
-std::string Usuario::getNombre() { return nombre; }
-void Usuario::setNombre(std::string n) { nombre = n; }
-
-Producto::Producto() : nombre(""), precio(0), cantidad(0) {}
-
-Producto::Producto(std::string n, float p, int c)
-    : nombre(n), precio(p), cantidad(c) {}
-
-std::string Producto::getNombre() { return nombre; }
-float Producto::getPrecio() { return precio; }
-int Producto::getCantidad() { return cantidad; }
-
-void Producto::setNombre(std::string n) { nombre = n; }
-void Producto::setPrecio(float p) { precio = p; }
-void Producto::setCantidad(int c) { cantidad = c; }
-
-void Producto::mostrarInfo() {
-    std::cout << "Producto: " << nombre
-              << " | Precio: $" << precio
-              << " | Cantidad: " << cantidad << "\n";
-}
+Usuario::Usuario(string n) : nombre(n) {}
+string Usuario::getNombre() const { return nombre; }
+void Usuario::setNombre(string n) { nombre = n; }
 
 Comprador::Comprador() : Usuario(), saldo(0) {}
-
-Comprador::Comprador(std::string n, float s)
-    : Usuario(n), saldo(s) {}
-
-float Comprador::getSaldo() { return saldo; }
-void Comprador::setSaldo(float s) { saldo = s; }
-
-bool Comprador::puedePagar(float total) { return saldo >= total; }
+Comprador::Comprador(string n, float s) : Usuario(n), saldo(s) {}
+float Comprador::getSaldo() const { return saldo; }
+bool Comprador::puedePagar(float total) const { return saldo >= total; }
 void Comprador::pagar(float total) { saldo -= total; }
 
-void Comprador::mostrarInfo() {
-    std::cout << "Comprador: " << nombre
-              << " | Saldo: $" << saldo << "\n";
+Producto::Producto() : nombre(""), precio(0), cantidad(0) {}
+Producto::Producto(string n, float p, int c) : nombre(n), precio(p), cantidad(c) {}
+
+string Producto::getNombre() const { return nombre; }
+float Producto::getPrecio() const { return precio; }
+int Producto::getCantidad() const { return cantidad; }
+void Producto::setCantidad(int c) { cantidad = c; }
+
+void Producto::mostrar() const {
+    cout << nombre << " - $" << precio << " (" << cantidad << " disponibles)\n";
 }
 
-Inventario::Inventario() {}
+Inventario::Inventario() : totalProductos(0) {}
 
-void Inventario::agregarProducto(Producto p) {
-    if (numProductos < 50)
-        lista[numProductos++] = p;
+void Inventario::agregar(Producto p) {
+    if (totalProductos < 50)
+        lista[totalProductos++] = p;
 }
 
-bool Inventario::descontarProducto(std::string nombre) {
-    for (int i = 0; i < numProductos; i++) {
-        if (lista[i].getNombre() == nombre) {
+void Inventario::mostrar() const {
+    cout << "\n INVENTARIO \n";
+    for (int i = 0; i < totalProductos; i++)
+        lista[i].mostrar();
+}
 
-            int nueva = lista[i].getCantidad() - 1;
+int Inventario::buscar(string n) {
+    for (int i = 0; i < totalProductos; i++)
+        if (lista[i].getNombre() == n)
+            return i;
+    return -1;
+}
 
-            if (nueva <= 0) {
-                for (int j = i; j < numProductos - 1; j++)
-                    lista[j] = lista[j + 1];
-                numProductos--;
-            } else {
-                lista[i].setCantidad(nueva);
-            }
+Producto& Inventario::getProducto(int index) {
+    return lista[index];
+}
+const Producto& Inventario::getProducto(int index) const {
+    return lista[index];
+}
+Carrito::Carrito() : totalCarrito(0) {}
 
-            return true;
-        }
+void Carrito::agregar(int index) {
+    if (totalCarrito < 20)
+        productos[totalCarrito++] = index;
+}
+
+void Carrito::mostrar(const Inventario& inventario) const {
+    cout << "\nCARRITO\n";
+
+    float suma = 0;
+
+    for (int i = 0; i < totalCarrito; i++) {
+        int idx = productos[i];
+        inventario.getProducto(idx).mostrar();
+        suma += inventario.getProducto(idx).getPrecio();
     }
-    return false;
+
+    cout << "TOTAL: $" << suma << "\n";
 }
 
-void Inventario::mostrarInventario() {
-    std::cout << "\n- INVENTARIO -\n";
-    for (int i = 0; i < numProductos; i++)
-        lista[i].mostrarInfo();
+int Carrito::getTotalCarrito() const {
+    return totalCarrito;
 }
 
-Carrito::Carrito() : total(0) {}
-
-void Carrito::agregar(Producto p) {
-    productos.push_back(p);
-    total += p.getPrecio() * p.getCantidad();
-}
-
-float Carrito::getTotal() { return total; }
-
-std::vector<Producto> Carrito::getProductos() { return productos; }
-
-void Carrito::mostrarCarrito() {
-    std::cout << "\n- CARRITO -\n";
-    for (auto &p : productos)
-        p.mostrarInfo();
-
-    std::cout << "TOTAL: $" << total << "\n";
+int Carrito::getIndex(int i) const {
+    return productos[i];
 }
 
 Tienda::Tienda() {}
 
-Tienda::Tienda(Inventario inv) : inventario(inv) {}
-
-void Tienda::agregarAlInventario(Producto p) {
-    inventario.agregarProducto(p);
+Inventario& Tienda::getInventario() {
+    return inventario;
 }
 
-void Tienda::mostrarInventario() {
-    inventario.mostrarInventario();
-}
+void Tienda::procesarCompra(Carrito& carrito, Comprador& comprador) {
+    float total = 0;
 
-void Tienda::procesarCompra(Carrito carrito, Comprador &comprador) {
-
-    float total = carrito.getTotal();
+    for (int i = 0; i < carrito.getTotalCarrito(); i++) {
+        int idx = carrito.getIndex(i);
+        total += inventario.getProducto(idx).getPrecio();
+    }
 
     if (!comprador.puedePagar(total)) {
-        std::cout << "\nSaldo insuficiente.\n";
+        cout << "\n No tienes suficiente dinero\n";
         return;
     }
 
     comprador.pagar(total);
 
-    for (auto &p : carrito.getProductos())
-        inventario.descontarProducto(p.getNombre());
-
-    std::cout << "\nCompra exitosa.\nNuevo saldo: $"
-              << comprador.getSaldo() << "\n";
+    cout << "\n Compra realizada\n";
+    cout << "Tu cambio es: $" << comprador.getSaldo() << "\n";
 }
 
