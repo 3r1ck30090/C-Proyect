@@ -12,5 +12,4 @@ Este proyecto es una simulación muy sencilla de una tienda virtual, con 3 clase
      -   Métodos: mostrar el carrito y obtener el total.
 
      Diagrama de clases:
-     
-<img width="2760" height="2994" alt="UML Proyecto final" src="https://github.com/user-attachments/assets/e1c227f1-8b52-497c-8661-9a8b8d8e40aa" />
+     <img width="2760" height="2994" alt="UML Proyecto FINAL" src="https://github.com/user-attachments/assets/d9ca083a-214f-4874-84b3-0d2ad2926f6b" />
