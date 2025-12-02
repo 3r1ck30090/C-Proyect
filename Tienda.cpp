@@ -103,4 +103,3 @@ void Tienda::procesarCompra(Carrito& carrito, Comprador& comprador) {
     cout << "\n Compra realizada\n";
     cout << "Tu cambio es: $" << comprador.getSaldo() << "\n";
 }
-
