@@ -20,7 +20,7 @@ Este proyecto es una simulación muy sencilla de una tienda virtual, con 3 clase
     -  Administra el inventario y compra final
     -  Métodos: conseguir el inventario y procesar una compra
    
-#Funcionamiento del Programa
+# Funcionamiento del Programa
 
 Se inicializa la tienda y se cargan productos predefinidos.
 
