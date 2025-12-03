@@ -56,8 +56,8 @@ Se reduce la cantidad del producto en el inventario.
 - A continuación se explicare todos los usos de const presentes en mi código.
 
 - - `const Producto&` : 
- - Producto& → se pasa por referencia (no se copia el objeto).
- - const → garantiza que la función no modificará el producto recibido.
+  - Producto& → se pasa por referencia (no se copia el objeto).
+  - const → garantiza que la función no modificará el producto recibido.
 - - `float getPrecio() const;` . . .
   - Permite que los objetos `Producto` creados como constantes puedan usar estos métodos.
   - Hace la clase más segura y consistente.
