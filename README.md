@@ -50,7 +50,21 @@ Se muestra cambio.
 
 Se reduce la cantidad del producto en el inventario.
 
+## Explicacion de codigos no visto en clase
+`CONST`
+En este proyecto, `const` se utiliza para proteger datos, evitar modificaciones accidentales y hacer el programa más eficiente, especialmente al trabajar con objetos como Producto y Tienda.
+A continuación se explicare todos los usos de const presentes en mi código.
 
+- - `const Producto&` : 
+ - Producto& → se pasa por referencia (no se copia el objeto).
+ - const → garantiza que la función no modificará el producto recibido.
+- - `float getPrecio() const;` . . .
+  - Permite que los objetos `Producto` creados como constantes puedan usar estos métodos.
+  - Hace la clase más segura y consistente.
+- - `for (const auto& producto : inventario) {`
+  - Evita copiar cada producto.
+
+    
    Diagrama de clases:
      <img width="2760" height="2994" alt="UML Proyecto FINAL" src="https://github.com/user-attachments/assets/d9ca083a-214f-4874-84b3-0d2ad2926f6b" />
 
