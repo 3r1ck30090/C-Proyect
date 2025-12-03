@@ -51,7 +51,7 @@ Se muestra cambio.
 Se reduce la cantidad del producto en el inventario.
 
 
-     Diagrama de clases:
+   Diagrama de clases:
      <img width="2760" height="2994" alt="UML Proyecto FINAL" src="https://github.com/user-attachments/assets/d9ca083a-214f-4874-84b3-0d2ad2926f6b" />
 
 
