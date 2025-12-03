@@ -63,7 +63,18 @@ Se reduce la cantidad del producto en el inventario.
   - Hace la clase más segura y consistente.
 - - `for (const auto& producto : inventario) {` :
   - Evita copiar cada producto.
+ 
+    `LIMITS`
+  - Esta librería proporciona `numeric_limits`, una utilidad que contiene información sobre los valores máximos y mínimos que pueden almacenar los tipos numéricos de C++.
+  - Usado solo para limpiar el buffer de entrada en las funciones de lectura segura en (leerEnteroseguro y leerFloarSeguro)
 
+  - - `cin.ignore(numeric_limits<streamsize>::max(), '\n');`  :
+    - numeric_limits<streamsize>::max() → Obtiene la cantidad máxima de caracteres que streamsize puede representar.
+    - cin.ignore(...) → Le indica a C++ que ignore todo lo que esté en el buffer hasta encontrar un salto de línea ('\n'
+    - cin.clear() → elimina el estado de error.
+    - cin.ignore(...) → borra toda la entrada incorrecta.
+
+    Y con esto me evito que cuando el usuario llegue a coloctar un caracter invalido no se rompa el programa en un bucle infinito haciendo que el usuario coloque solo opciones validas (pasaba más con letras y caracteres especiales)
     
    Diagrama de clases:
      <img width="2760" height="2994" alt="UML Proyecto FINAL" src="https://github.com/user-attachments/assets/d9ca083a-214f-4874-84b3-0d2ad2926f6b" />
