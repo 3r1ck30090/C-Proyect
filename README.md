@@ -52,7 +52,7 @@ Se reduce la cantidad del producto en el inventario.
 
 ## Explicacion de codigos no visto en clase
 `CONST`
-En este proyecto, `const` se utiliza para proteger datos, evitar modificaciones accidentales y hacer el programa más eficiente, especialmente al trabajar con objetos como Producto y Tienda.
+- En este proyecto, `const` se utiliza para proteger datos, evitar modificaciones accidentales y hacer el programa más eficiente, especialmente al trabajar con objetos como Producto y Tienda.
 A continuación se explicare todos los usos de const presentes en mi código.
 
 - - `const Producto&` : 
