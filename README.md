@@ -77,7 +77,8 @@ Se reduce la cantidad del producto en el inventario.
     Y con esto me evito que cuando el usuario llegue a coloctar un caracter invalido no se rompa el programa en un bucle infinito haciendo que el usuario coloque solo opciones validas (pasaba más con letras y caracteres especiales)
     
    Diagrama de clases:
-     <img width="2760" height="2994" alt="UML Proyecto FINAL" src="https://github.com/user-attachments/assets/d9ca083a-214f-4874-84b3-0d2ad2926f6b" />
+  
+<img width="2849" height="2314" alt="UML Proyecto" src="https://github.com/user-attachments/assets/aae753fb-7387-43d0-aa0e-cf16dded91cd" />
 
 
 ## Instrucciones de compilación
