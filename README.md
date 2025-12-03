@@ -70,7 +70,7 @@ Se reduce la cantidad del producto en el inventario.
 
   - - `cin.ignore(numeric_limits<streamsize>::max(), '\n');`  :
     - numeric_limits<streamsize>::max() → Obtiene la cantidad máxima de caracteres que streamsize puede representar.
-    - cin.ignore(...) → Le indica a C++ que ignore todo lo que esté en el buffer hasta encontrar un salto de línea ('\n'
+    - cin.ignore(...) → Le indica a C++ que ignore todo lo que esté en el buffer hasta encontrar un salto de línea ('\n')
     - cin.clear() → elimina el estado de error.
     - cin.ignore(...) → borra toda la entrada incorrecta.
 
