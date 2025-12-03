@@ -14,6 +14,31 @@ Este proyecto es una simulación muy sencilla de una tienda virtual, con 3 clase
      Diagrama de clases:
      <img width="2760" height="2994" alt="UML Proyecto FINAL" src="https://github.com/user-attachments/assets/d9ca083a-214f-4874-84b3-0d2ad2926f6b" />
 
+     - Clases y su funcionalidad
+-Producto
+
+--Atributos: nombre, precio, cantidad.
+
+--Métodos: mostrar información del producto, obtener el precio.
+
+-Representa un artículo disponible para comprar.
+
+-Comprador
+
+--Atributos: nombre, saldo disponible.
+
+--Métodos: mostrar información, verificar si tiene saldo suficiente, realizar pago.
+
+-Representa al usuario que realiza la compra.
+
+-Carrito
+
+--Contiene los productos seleccionados por el comprador.
+
+--Métodos: añadir productos, calcular total, mostrar el carrito.
+
+--Representa los artículos que se desean adquirir.
+
 ## Instrucciones de compilación
 `g++ main.cpp Tienda.cpp -o tienda`
 
