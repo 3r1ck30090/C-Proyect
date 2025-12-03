@@ -58,10 +58,10 @@ Se reduce la cantidad del producto en el inventario.
 - - `const Producto&` : 
   - Producto& → se pasa por referencia (no se copia el objeto).
   - const → garantiza que la función no modificará el producto recibido.
-- - `float getPrecio() const;` . . .
+- - `float getPrecio() const;` . . . :
   - Permite que los objetos `Producto` creados como constantes puedan usar estos métodos.
   - Hace la clase más segura y consistente.
-- - `for (const auto& producto : inventario) {`
+- - `for (const auto& producto : inventario) {` :
   - Evita copiar cada producto.
 
     
