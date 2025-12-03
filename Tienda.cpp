@@ -3,11 +3,13 @@ using namespace std;
 
 Usuario::Usuario() : nombre("Sin nombre") {}
 Usuario::Usuario(string n) : nombre(n) {}
+
 string Usuario::getNombre() const { return nombre; }
 void Usuario::setNombre(string n) { nombre = n; }
 
 Comprador::Comprador() : Usuario(), saldo(0) {}
 Comprador::Comprador(string n, float s) : Usuario(n), saldo(s) {}
+
 float Comprador::getSaldo() const { return saldo; }
 bool Comprador::puedePagar(float total) const { return saldo >= total; }
 void Comprador::pagar(float total) { saldo -= total; }
@@ -103,3 +105,4 @@ void Tienda::procesarCompra(Carrito& carrito, Comprador& comprador) {
     cout << "\n Compra realizada\n";
     cout << "Tu cambio es: $" << comprador.getSaldo() << "\n";
 }
+
