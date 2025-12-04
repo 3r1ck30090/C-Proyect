@@ -75,6 +75,10 @@ Se reduce la cantidad del producto en el inventario.
     - cin.ignore(...) → borra toda la entrada incorrecta.
 
     Y con esto me evito que cuando el usuario llegue a coloctar un caracter invalido no se rompa el programa en un bucle infinito haciendo que el usuario coloque solo opciones validas (pasaba más con letras y caracteres especiales)
+
+    - - `do:`
+      - Se utiliza para crear un ciclo que siempre se ejecuta una vez antes de revisar su condición.
+      - Es útil en menús (para no usar virtual), validación de datos o cualquier situación donde el código deba correr mínimo una vez.
     
    Diagrama de clases:
   
