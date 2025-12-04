@@ -55,9 +55,6 @@ void mostrar() const;
  * Clase Inventario:
  * Almacena hasta 50 productos.
  * Permite agregarlos, buscarlos y obtener referencias.
- (Un que no este en el menu lo deje de idea,
- quise que pudera restockearse solo 
- pero no supe como)
  * getProducto tiene dos versiones:
  * Producto& → permite modificar.
  * const Producto& → solo lectura.
@@ -105,4 +102,5 @@ void procesarCompra(Carrito&, Comprador&);
 };
 
 #endif
+
 
