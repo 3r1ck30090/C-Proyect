@@ -40,8 +40,7 @@ void Producto::mostrar() const {
 /*
  * Inventario
  * Guarda hasta 50 productos.
- * Permite buscarlos y obtener referencias.
- * Y permitia agregarlos
+ * Permite agregarlos, buscarlos y obtener referencias.
  */
 Inventario::Inventario() : totalProductos(0) {}
 
@@ -131,5 +130,6 @@ void Tienda::procesarCompra(Carrito& carrito, Comprador& comprador) {
     cout << "\n Compra realizada\n";
     cout << "Tu cambio es: $" << comprador.getSaldo() << "\n";
 }
+
 
 
