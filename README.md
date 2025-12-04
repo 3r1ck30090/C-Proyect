@@ -82,7 +82,8 @@ Se reduce la cantidad del producto en el inventario.
     
    Diagrama de clases:
   
-<img width="2849" height="2314" alt="UML Proyecto F" src="https://github.com/user-attachments/assets/18183cb5-0f33-47eb-8356-d1145a719928" />
+
+<img width="2849" height="2314" alt="UML Proyecto Tienda" src="https://github.com/user-attachments/assets/0cb1ae64-a282-4e84-81cc-7c4d5b8b3df6" />
 
 
 Asociación simple:
