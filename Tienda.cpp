@@ -27,7 +27,10 @@ void Comprador::pagar(float total) { saldo -= total; }
  * Puede verificar si tiene dinero suficiente y pagar.
  */
 Producto::Producto() : nombre(""), precio(0), cantidad(0) {}
-Producto::Producto(string n, float p, int c) : nombre(n), precio(p), cantidad(c) {}
+Producto::Producto(string n, float p, int c)
+    : nombre(n),
+      precio(p),
+      cantidad(c) {}
 
 string Producto::getNombre() const { return nombre; }
 float Producto::getPrecio() const { return precio; }
@@ -130,6 +133,3 @@ void Tienda::procesarCompra(Carrito& carrito, Comprador& comprador) {
     cout << "\n Compra realizada\n";
     cout << "Tu cambio es: $" << comprador.getSaldo() << "\n";
 }
-
-
-
