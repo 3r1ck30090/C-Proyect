@@ -84,6 +84,10 @@ Se reduce la cantidad del producto en el inventario.
   
 <img width="2849" height="2314" alt="UML Proyecto" src="https://github.com/user-attachments/assets/aae753fb-7387-43d0-aa0e-cf16dded91cd" />
 
+Asociación simple:
+Fue porque la relación entre carrito y producto es porque el carrito no posee, no crea, ni controla el ciclo de vida de los productos, ademas el carrito únicamente almacena índices y no hay otra clase mejor para conectar.
+Bueno tambien tendria conexion con inventario pero queda mejor con producto porque es la clase con la que el carrito interactúa conceptualmente
+
 
 ## Instrucciones de compilación
 `g++ main.cpp Tienda.cpp -o tienda`
