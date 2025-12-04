@@ -82,7 +82,8 @@ Se reduce la cantidad del producto en el inventario.
     
    Diagrama de clases:
   
-<img width="2849" height="2314" alt="UML Proyecto" src="https://github.com/user-attachments/assets/aae753fb-7387-43d0-aa0e-cf16dded91cd" />
+<img width="2849" height="2314" alt="UML Proyecto F" src="https://github.com/user-attachments/assets/18183cb5-0f33-47eb-8356-d1145a719928" />
+
 
 Asociación simple:
 Fue porque la relación entre carrito y producto es porque el carrito no posee, no crea, ni controla el ciclo de vida de los productos, ademas el carrito únicamente almacena índices y no hay otra clase mejor para conectar.
